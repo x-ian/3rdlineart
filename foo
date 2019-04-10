@@ -1,0 +1,77 @@
+includes/app_patientdetails.php:                                $form_creation=mysqli_query( $bd,"SELECT * FROM form_creation where (status='Not Complete' or complete ='Rejected') and clinician_id='$clinicianID' ORDER BY `form_creation`.`3rdlineart_form_id` DESC "); 
+
+includes/queries.php:    'app_new_referral' => 'SELECT * FROM form_creation WHERE clinician_id = (SELECT id FROM clinician WHERE user_id = '.$user_id.')',
+
+includes/app_patientdetails_edit.php.save2:       $patient_from_art = "SELECT * FROM form_creation where (status='Not Complete' or complete ='Rejected') and clinician_id='$clinicianID' ORDER BY `form_creation`.`3rdlineart_form_id` DESC ";
+
+includes/app_patientdetails_edit.php:       $patient_from_art = "SELECT * FROM form_creation where (status='Not Complete' or complete ='Rejected') and clinician_id='$clinicianID' ORDER BY `form_creation`.`3rdlineart_form_id` DESC ";
+
+includes/app_rejected_forms.php:$form_creation=mysqli_query( $bd,"SELECT * FROM form_creation inner join form_rejected on (form_creation.3rdlineart_form_id =form_rejected.form_id) where status='Complete' and complete ='Rejected' and clinician_id=$clinicianID ORDER BY `form_creation`.`3rdlineart_form_id` DESC "); 
+
+includes/app_patientdetails_edit.php.save:       $patient_from_art = "SELECT * FROM form_creation where (status='Not Complete' or complete ='Rejected') and clinician_id='$clinicianID' ORDER BY `form_creation`.`3rdlineart_form_id` DESC ";
+
+reviewer/includes/sec_consolidate2.php:$form_creation=mysqli_query( $bd,"SELECT clinician_id FROM form_creation where 3rdlineart_form_id ='$formID' "); 
+reviewer/includes/sec_consolidate2.php:$form_creation=mysqli_query( $bd,"SELECT clinician_id FROM form_creation where 3rdlineart_form_id ='$formID' "); 
+reviewer/includes/sec_consolidate1.php:$form_creation=mysqli_query( $bd,"SELECT clinician_id FROM form_creation where 3rdlineart_form_id ='$formID' "); 
+
+app.php:                                                                        $form_creation = mysqli_query($bd, "SELECT * FROM form_creation, expert_review_consolidate1 WHERE form_creation.3rdlineart_form_id not in (select form_id from sample) and form_creation.3rdlineart_form_id=expert_review_consolidate1.form_id and form_creation.clinician_id ='$clinicianID'"); 
+app.php:                                                                        $form_creation_conso2 = mysqli_query($bd, "SELECT * FROM form_creation, expert_review_consolidate2 WHERE form_creation.3rdlineart_form_id=expert_review_consolidate2.form_id and form_creation.clinician_id ='$clinicianID'"); 
+
+check_point/includes/sec_consolidate2.php:$form_creation=mysqli_query( $bd,"SELECT clinician_id FROM form_creation where 3rdlineart_form_id ='$formID' "); 
+
+check_point/includes/sec_consolidate1.php:$form_creation=mysqli_query( $bd,"SELECT clinician_id FROM form_creation where 3rdlineart_form_id ='$formID' "); 
+
+
+new_user_account.php:            $SQL_reviewer = "SELECT * FROM reviewer WHERE user_id=$user_id";
+includes/queries.php:    'select_rev' => 'SELECT * FROM reviewer',
+
+reviewer/includes/nav_sub.php:$select_assigned_forms_lead="SELECT distinct form_id,date_assigned FROM assigned_forms WHERE form_id in (select form_id from reviewer_team_lead where reviewer_team_lead.rev_id=$rev_id) and form_id not in (select form_id from expert_review_consolidate1) ORDER BY `assigned_forms`.`form_id` DESC"; 
+reviewer/includes/nav_sub.php:$select_lead_assigned_forms="SELECT distinct form_id,date_assigned FROM assigned_app_results WHERE form_id in (select form_id from reviewer_team_lead2 where reviewer_team_lead2.rev_id=$rev_id) and form_id not in (select form_id from expert_review_consolidate2) ORDER BY `assigned_app_results`.`form_id` DESC";
+
+reviewer/includes/sec_consolidate2.php:         $select_reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id'"); 
+reviewer/includes/sec_consolidate2.php:                                         <p>Comment from reviewers:</p>
+
+reviewer/includes/sec_rev.php:  $assigned_forms=mysqli_query( $bd,"SELECT distinct form_id,date_assigned FROM assigned_forms WHERE form_id in (select form_id from reviewer_team_lead where reviewer_team_lead.rev_id=$rev_id) and form_id not in (select form_id from expert_review_consolidate1) ORDER BY `assigned_forms`.`form_id` DESC"); 
+reviewer/includes/sec_rev.php:                $select_team_lead=mysqli_query( $bd,"SELECT * FROM reviewer_team_lead where form_id='$form_id'");
+reviewer/includes/sec_rev.php:                                                  $select_reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id_as'"); 
+
+reviewer/includes/sec_consolidate1.php: $select_reviewer = mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id'"); 
+
+reviewer/includes/my_review.php:        $select_reviewer = mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id'"); 
+
+reviewer/includes/sec_rev_results.php:  $assigned_forms=mysqli_query( $bd,"SELECT distinct form_id,date_assigned FROM assigned_app_results WHERE form_id in (select form_id from reviewer_team_lead2 where reviewer_team_lead2.rev_id=$rev_id) and form_id not in (select form_id from expert_review_consolidate2) ORDER BY `assigned_app_results`.`form_id` DESC"); 
+reviewer/includes/sec_rev_results.php:                                          $select_team_lead=mysqli_query( $bd,"SELECT * FROM reviewer_team_lead where form_id='$form_id'");
+reviewer/includes/sec_rev_results.php:                                                  $select_reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id_as'"); 
+
+login.php:            $SQL_reviewer = "SELECT * FROM reviewer WHERE user_id=$user_id";
+
+admin/includes/reviewer_edit.php:$reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$id' "); 
+
+admin/includes/reviewer.php:            $reviewer=mysqli_query( $bd,"SELECT * FROM reviewer"); 
+
+check_point/includes/insert_assign_reviewer.php:    $SQL_reviewer = "SELECT * FROM reviewer WHERE id=$rev_id";
+check_point/includes/insert_assign_reviewer.php:        $SQL_reviewer = "SELECT * FROM reviewer WHERE id=$rev_id";
+
+check_point/includes/sec_consolidate2.php:              $select_reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id'"); 
+check_point/includes/sec_consolidate2.php:                                      <p>Comment from reviewers:</p>
+
+check_point/includes/sec_rev.php:       $SQL_reviewer = "SELECT * FROM reviewer WHERE id=$rev_id";
+check_point/includes/sec_rev.php:                                       $select_team_lead=mysqli_query( $bd,"SELECT reviewer_team_lead.rev_id, reviewer.title, reviewer.fname, reviewer.lname FROM reviewer_team_lead, reviewer where reviewer_team_lead.form_id='$form_id' and reviewer_team_lead.rev_id =reviewer.id");
+check_point/includes/sec_rev.php:                                               $select_reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id'"); 
+
+check_point/includes/sec_attach_resultpdf.php:                  $reviewer=mysqli_query( $bd,"SELECT * FROM reviewer"); 
+check_point/includes/sec_consolidate1.php:      $select_reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id'"); 
+
+check_point/includes/sec_results_under_rev.php: $SQL_reviewer = "SELECT * FROM reviewer WHERE id=$rev_id";
+check_point/includes/sec_results_under_rev.php:                                 $select_team_lead=mysqli_query( $bd,"SELECT * FROM reviewer_team_lead2 where form_id='$form_id'");
+check_point/includes/sec_results_under_rev.php:                    $select_reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$team_leader_id'"); 
+check_point/includes/sec_results_under_rev.php:                                         $select_reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where id='$rev_id'"); 
+
+check_point/includes/insert_attach_result.php:                  $SQL_reviewer = "SELECT * FROM reviewer WHERE id=$rev_id";
+
+check_point/includes/insert_reviewers.php:    $SQL_reviewer = "SELECT * FROM reviewer WHERE id=$rev_id";
+check_point/includes/insert_reviewers.php:mysqli_query("DELETE FROM reviewer_team_lead WHERE form_id = '$formID and rev_id = '$rev_id'");
+check_point/includes/insert_reviewers.php:        $SQL_reviewer = "SELECT * FROM reviewer WHERE id=$rev_id";
+
+check_point/includes/sec_assign_reviewer.php:           $reviewer=mysqli_query( $bd,"SELECT * FROM reviewer"); 
+

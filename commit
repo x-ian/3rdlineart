@@ -1,0 +1,12 @@
+#!/bin/sh
+mkdir ../moved
+mv 3rdlineart7_notoplevel_9-10-17.tar.gz ../moved
+mv admin/includes/update_user.php.save ../moved
+mv	includes/documents/ ../moved
+mv	includes/vendor/ ../moved
+mv	patrefs ../moved
+mv	patrefs~ ../moved
+mv	update3rdline.tar.gz ../moved
+git add *
+git commit
+
