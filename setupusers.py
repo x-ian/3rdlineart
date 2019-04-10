@@ -97,11 +97,12 @@ def setupusers(key, usersfn, which='clinician'):
     
     with open(usersfn, 'rb') as csvfile:
         spamreader = csv.DictReader(csvfile, delimiter=',', quotechar='|')
-        print spamreader.fieldnames
+        # print spamreader.fieldnames
         userno = 0
         for row in spamreader:
             fullname = row['NAME']
-            email = 'jeffgelbard@gmail.com'
+            # email = 'jeffgelbard@gmail.com'
+            email = row['EMAIL']
             print 'email was: '+row['EMAIL']
             try:
                 role = int(row['ROLE'])
@@ -153,16 +154,24 @@ def setupusers(key, usersfn, which='clinician'):
 '''
 
             json = { 'register_clinician':'1', 'logoutafter':'1', 'backdoor':'3rdl!nEg3n0typ3mw','firstname':fname, 'lastname':lname, 'username':username, 'art_clinic':'','email':email, 'phone':phone, 'reviewer':'on', 'password':password, 'confirm_pswd':password }
-            response = requests.post('http://localhost/3rdlineart8/admin/dash.php',
-                                     data=json)
+
+            if 1:
+                response = requests.post('https://www.3rdlineartmw.org/3rdlineart8/admin/dash.php',
+                                         data=json, verify=False)
+            else:
+                response = requests.post('http://localhost/3rdlineart8/admin/dash.php',
+                                         data=json)
             # response = requests.post('https://www.3rdlineartmw.org/3rdlineart8/admin/includes/insert_clinician.php',
             #                          json=json)
-            print response, response.text
+            print response
+            # print response.text
+            
             userno += 1
-            if userno == 2:
+            if userno == 1:
                 break
         #   email_newuser(username, enc_password, fullname, email, cap_which, key)
         #   break
+    print "Registered %s users !" % userno
             
 def phpmailer(to, subject, body):
     today = date.today()
@@ -230,4 +239,4 @@ if __name__ == '__main__':
     # fn = './3rdlineArtReviewers.csv'
     fn = './3rdLineArt Participants list.csv'
     setupusers(key, fn, 'clinician')
-    print '>>>', crypt.crypt('bytewarp', '$1$'+salt+'$')
+    # print '>>>', crypt.crypt('bytewarp', '$1$'+salt+'$')

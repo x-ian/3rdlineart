@@ -5,6 +5,10 @@ if (isset($_GET['pat_id']))
     $pat_id = $_GET['pat_id'];
 if (isset($_GET['id']))
     $form_id = $_GET['id'];
+if (!$pat_id) {
+    $app = new Application($form_id);
+    $pat_id = $app->patient->id;
+}
 if (isset($_GET['clin_id']))
     $clinician_id = $_GET['clin_id'];
 

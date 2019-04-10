@@ -5,8 +5,8 @@
 // $serveraddr = '168.253.229.30';
 // $serveraddr = 'localhost';
 $serveraddr = 'www.3rdlineartmw.org';
-$rooturl = "https://$serveraddr/3rdlineart8/";
-$path = $_SERVER['DOCUMENT_ROOT']."/3rdlineart8";
+$rooturl = "https://$serveraddr/3rdlineart9/";
+$path = $_SERVER['DOCUMENT_ROOT']."/3rdlineart9";
 $cpath = $path."/includes/config.php";
 
 echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';

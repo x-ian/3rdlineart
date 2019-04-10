@@ -8,7 +8,7 @@ session_start();
     $bycode = $_POST['bycode'];
 // echo "<br>$bycode";
 if ($bycode != '') {
-    $facilitys = mysqli_query( $bd,"SELECT dcode,name FROM facilitys WHERE facilitycode ='$bycode' ORDER BY name"); 
+    $facilitys = mysqli_query( $bd,"SELECT dcode,name FROM facilitys WHERE facilitycode ='$bycode' ORDER BY name ASC"); 
     while ($row_facility = mysqli_fetch_array($facilitys)) {
         $facility_name = $row_facility['name'];
         $facility_dcode = $row_facility['dcode'];
@@ -25,7 +25,7 @@ if ($bycode != '') {
 
     if ($dcode != '0') {
         echo "<option select=\"selected\">Select ART Clinic $dcode</option>";
-        $facilitys = mysqli_query( $bd,"SELECT name,facilitycode FROM facilitys WHERE dcode = '$dcode' ORDER BY name"); 
+        $facilitys = mysqli_query( $bd,"SELECT name,facilitycode FROM facilitys WHERE dcode = '$dcode' ORDER BY name ASC"); 
         while ($row_facility = mysqli_fetch_array($facilitys)) {
             $facility_name = $row_facility['name'];
             $facility_code = $row_facility['facilitycode'];

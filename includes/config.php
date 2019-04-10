@@ -3,7 +3,7 @@ $mysql_hostname = "localhost";
 //$mysql_user = "3rdlineart_root";
 $mysql_user = "root";
 $mysql_password = "g3n0typ3";
-// $mysql_password = "password";
+//$mysql_password = "password";
 $mysql_database = "3rdlineart9_db";
 // echo "mysqli_connect($mysql_hostname, $mysql_user, $mysql_password, $mysql_database)";
 $bd = mysqli_connect($mysql_hostname, $mysql_user, $mysql_password, $mysql_database)

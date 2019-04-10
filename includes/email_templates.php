@@ -58,7 +58,7 @@ function phpmailer_send($to, $subject, $body, $from='3rdlineartmalawi@gmail.com'
     $mail = new PHPMailer;
 
     // $mail->SMTPDebug = 3;                               // Enable verbose debug output
-    $mail->SMTPDebug = 2;                               // Enable less verbose debug output
+    // $mail->SMTPDebug = 2;                               // Enable less verbose debug output
     
     $mail->isSMTP();                                      // Set mailer to use SMTP
     // $mail->Host = 'ssl://email-smtp.us-west-2.amazonaws.com';
@@ -352,9 +352,9 @@ function email_msg($email_template, $to='3rdlineartmalawi@gmail.com') {
             <!-- <a href="'.$rooturl.'/new_user_account.php?x='.urlencode(encrypt($username, $enckey)).'&y='.urlencode(encrypt($role, $key)).'&z='.urlencode($password).'">Click Here</a> -->
             <a href="'.$rooturl.'/new_user_account.php?x='.urlencode(encrypt($username, $enckey)).'&y='.urlencode(encrypt($role, $enckey)).'&z='.urlencode($password).'">Click Here</a>
 			<p>&nbsp;</p>
-			<p>Your username is: '.$username.'</p>
-	                <p>You can change it to whatever is easiest to remember. Also be sure to change your password!</p>
-		        <p>&nbsp;</p>								  
+            <p>Your username is:'.$username.'</p>
+            <p>You can change it to whatever is easiest to remember. Also be sure to change your password!</p>
+			<p>&nbsp;</p>
 			<p>Regards</p>
 			<p>Admin</p>
 		</body>

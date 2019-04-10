@@ -2,10 +2,12 @@
 
 global $fullname, $username, $role, $enckey, $salt, $bd;
 global $username, $fname, $lname, $email, $phone, $password, $password_confirm, $pswd_size;
-global $logoutafter;
+global $logoutafter, $main_page, $redir_page;
+
+$redir_page = $_POST['redir_page'];
+// echo "<br>redir_page is $redir_page";
 
 $logoutafter = isset($_POST['logoutafter']);
-
 // echo '<br>'.isset($_POST['update_admin']).' - '.$_POST['update_user'].' : update_user, logoutafter: '.$logoutafter."username=".$_POST['username'].", password=".$_POST['password'];
 
 mysqli_report(MYSQLI_REPORT_STRICT); 
@@ -23,7 +25,7 @@ function grab_common_fields() {
 }
 
 function finish($where, $success=true) {
-    global $logoutafter;
+    global $logoutafter, $main_page, $source;
     if ($success)
         echo '<div class="alert alert-success">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -36,20 +38,22 @@ function finish($where, $success=true) {
     } else {                    
         // echo "email message, username=$username, password=$password";                    
         // email_msg('send_user_email', $email);
-        echo "<meta http-equiv=\"Refresh\" content=\"2; url=$main_page?$where&$source\">"; 
+        echo "<meta http-equiv=\"Refresh\" content=\"2; url=$main_page?$where\">"; 
     }
 }
 
 function check_passwd($redir_page) {
     global $bd, $user_id, $username, $fname, $lname, $email, $phone, $password, $password_confirm, $pswd_size, $logoutafter, $update_id;        
     global $enckey, $salt;
+    global $main_page, $redir_page, $source;
 
     if ($password != $password_confirm) {
 			echo '<div class="alert alert-warning">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<p style="color:#f00"><strong>Yoo!</strong> Passwords dont match </p>
 		</div>';
-            echo"<meta http-equiv=\"Refresh\" content=\"2; url=".$main_page."?".$redir_page.$source."&id='.$update_id.'\">";
+            // echo "<br>url=$main_page?$redir_page".$source.'&id='.$update_id;
+            echo "<meta http-equiv=\"Refresh\" content=\"2; url="."$main_page?$redir_page".$source.'&id='.$update_id.'">';
             return false;
     } else {
         if ($pswd_size < 6) {
@@ -100,7 +104,9 @@ function update_clinician($return=false) {
                     return;
                 finish('man_clin', true);
             }
+            return true;
     }
+    return false;
 }
 
 function update_lab_user() {
@@ -128,7 +134,9 @@ function update_lab_user() {
             if (mysqli_query($bd, $sql_update_pih_lab)) {
                 finish('man_lab', true);
             }
+            return true;
     }
+    return false;
 }
 
 function update_secretary($return=false) {
@@ -207,10 +215,11 @@ function update_reviewer($return) {
         // echo "<br>$sql_update_reviewer";
         if (mysqli_query($bd, $sql_update_reviewer)) {
             if ($return)
-                return;
+                return true;
             finish('man_rev', true);
         }
     }
+    return false;
 }
 
 if(isset($_POST['update_user']) || isset($_GET['update_user'])) {
@@ -219,7 +228,8 @@ if(isset($_POST['update_user']) || isset($_GET['update_user'])) {
     // echo "<br>$user_id";
     
     if (isset($_POST['update_clinician'])) {
-        update_clinician(true);
+        if (!update_clinician(true))
+            return;
         if ($reviewer) {
             update_reviewer(true);
         }
@@ -239,7 +249,8 @@ if(isset($_POST['update_user']) || isset($_GET['update_user'])) {
     }
     
     if (isset($_POST['update_rev'])) {
-        update_reviewer(true);
+        if (!update_reviewer(true))
+            return;
         if ($secretary) {
             update_secretary(true);
             // echo "<br>updated secretary";

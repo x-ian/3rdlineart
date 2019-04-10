@@ -466,7 +466,7 @@ else
 <div class="form-actions">
 <?php if ($role == 'Admin') echo '
   <div class="span3">
-    <a class="btn" href="admin/dash.php?man_apps" style="padding:10px; font-size:180%">Cancel</a> 
+    <a class="btn" href="dash.php?man_apps" style="padding:10px; font-size:180%">Cancel</a> 
   </div>';
 else echo '
   <div class="span3">

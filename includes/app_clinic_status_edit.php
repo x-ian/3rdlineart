@@ -10,6 +10,12 @@
 </style>
 
 <?php
+session_start();
+if(isset($_SESSION['role'])) {
+    $role = $_SESSION['role'];
+    echo "<br>apd: role is $role";
+}
+
 global $pat_id;
 if(isset($_GET['pat_id'])){
 	$pat_id= $_GET['pat_id'];
@@ -377,7 +383,12 @@ $intr_checked_n = $art_interrup == 'No' ? 'checked="checked"' : '';
             
 <div class="form-actions">
 	<div class="span3">
-         <a href="app.php?back&part_1&<?php echo 'pat_id='.$pat_id.'' ?>" class="btn" style="padding:10px; font-size:180%">Back</a>
+<?php
+     if ($role == 'Admin')
+         echo '<a class="btn" href="admin/dash.php?man_apps" style="padding:10px; font-size:180%">Cancel</a>';
+     else
+         echo '<a href="app.php?back&part_1&pat_id='.$pat_id.'" class="btn" style="padding:10px; font-size:180%">Back</a>';
+?>
     </div>
     <div class="span3">
         <?php include ('includes/app_edit_menu.php'); ?>

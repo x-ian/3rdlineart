@@ -1,5 +1,6 @@
 <?php
-if(isset($_POST['register_clinician'])){ 
+if(isset($_POST['register_clinician'])){
+    echo "<br>new or edit: $new_or_edit";
 	$clin_art_clinic = mysqli_real_escape_string($bd,$_POST['art_clinic']);
 // common entries
 	$username = mysqli_real_escape_string($bd,$_POST['username']);

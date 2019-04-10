@@ -41,7 +41,8 @@ if (isset(_POST['logoutafter']) || $logoutafter) {
 <hr />
 
 <form id="edit-profile" class="form-horizontal" action="dash.php?update_user" method="post">
-    <!-- <input type="hidden" name="logoutafter" value="<?php echo $logoutafter;?>"/> -->
+    <input type="hidden" name="redir_page" value="<?=$redir_page?>">
+    <?php if ($logoutafter) echo '<input type="hidden" name="logoutafter" value="1">'; ?>
 	<div class="control-group">											
 		<label class="control-label" for="firstname">Title</label>
 		<div class="controls">

@@ -45,8 +45,9 @@ $().ready(function() {
 </div>
 
 <?php
-global $id, $salt;
+global $id, $salt, $redir_page;
 $id = $_GET['id'];
+// echo "<br>redir_page=$redir_page";
 
 $clinician = mysqli_query($bd, "SELECT * FROM clinician where id='$id'");
 // echo "<br>clinician id=$id";
@@ -104,6 +105,7 @@ if (isset(_POST['logoutafter']) || $logoutafter)
 
 <form id="edit-clinician" class="form-horizontal" action="dash.php?update_user" method="post">
 <?php if ($logoutafter) echo '<input type="hidden" name="logoutafter" value="1">'; ?>
+<?php if ($redir_page) echo '<input type="hidden" name="redir_page" value="'.$redir_page.'">'; ?>
 	<div class="control-group id="foo"">
 
       District
@@ -189,9 +191,9 @@ if (isset(_POST['logoutafter']) || $logoutafter)
 		</div>
         <div class="span3">
 <?php if ($new_or_edit == "Edit")
-                    echo '<button type="submit" class="btn btn-primary btn-large" style="margin: 10px 0px 0px 10px; padding:10px; font-size:180%" name="update_clinician">Update</button>';
-                    else
-                        echo '<button type="submit" class="btn btn-primary btn-large" style="padding:10px; font-size:180%" name="register_clinician">Register</button>';
+          echo '<button type="submit" class="btn btn-primary btn-large" style="margin: 10px 0px 0px 10px; padding:10px; font-size:180%" name="update_clinician">Update</button>';
+      else
+          echo '<button type="submit" class="btn btn-primary btn-large" style="padding:10px; font-size:180%" name="register_clinician">Register</button>';
 ?>
         </div>
 	</div>

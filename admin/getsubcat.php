@@ -27,8 +27,8 @@ if ($bycode != '') {
   </head>";
 
     if ($dcode != '0') {
-        echo "<option select=\"selected\">Select ART Clinic $dcode</option>";
-        $facilitys = mysqli_query( $bd,"SELECT name,facilitycode FROM facilitys WHERE dcode = '$dcode' ORDER BY name ASC"); 
+        echo "<option>Select ART Clinic $dcode</option>";
+        $facilitys = mysqli_query( $bd,"SELECT name,facilitycode FROM facilitys WHERE dcode = '$dcode'"); 
         while ($row_facility = mysqli_fetch_array($facilitys)) {
             $facility_name = $row_facility['name'];
             $facility_code = $row_facility['facilitycode'];

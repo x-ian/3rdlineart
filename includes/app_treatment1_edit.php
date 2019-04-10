@@ -7,6 +7,11 @@
 <h2 style="background-color:#f8f7f7; text-align:center">ART Treatment History</h2>
 <!--   <hr style=" border: 2px solid #1c952f;" />  --> 
 <?php
+session_start();
+if(isset($_SESSION['role'])) {
+    $role = $_SESSION['role'];
+    echo "<br>apd: role is $role";
+}
 
 global $pat_id;
 $pat_id= $_GET['pat_id'];
@@ -54,7 +59,12 @@ echo '
 
 	<div class="form-actions">
 		<div class="span3">
-			<a class="btn" href="app.php?back_3&part_2&back_treatment1<?php echo '&pat_id='.$pat_id.'&g='.$patient->gender.'&xx='.$patient->age.'' ?>" style="padding:10px; font-size:180%">Back</a>           
+    <?php
+     if ($role == 'Admin')
+         echo '<a class="btn" href="admin/dash.php?man_apps" style="padding:10px; font-size:180%">Cancel</a>';
+     else
+         echo '<a class="btn" href="app.php?back_3&part_2&back_treatment1&pat_id=$pat_id&g='.$patient->gender.'&xx='.$patient->age.'" style="padding:10px; font-size:180%">Back</a>'
+?>
 		</div> 
 		<div class="span3">
 			<?php include ('includes/app_edit_menu.php'); ?>

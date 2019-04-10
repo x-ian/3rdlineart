@@ -64,11 +64,13 @@ class User {
         $bd = $GLOBALS['bd'];
         $enckey = $GLOBALS['enckey'];
 
+        $this->id = $id;
+        
         if ($role == 'Clinican') {
             $SQL = "SELECT * FROM clinician WHERE id='$id'";
             $clinician_result = mysqli_query($bd, $SQL);
             if (mysqli_num_rows($clinician_result)) {
-                $row_result = mysqli_fetch_assoc($clinician_result);            
+                $row_result = mysqli_fetch_assoc($clinician_result);
                 $this->clinicianID = $row_result ['id'];            
                 $this->phone = $row_result ['phone'];
                 $this->email = $row_result ['email'];
@@ -352,14 +354,14 @@ class Application {
         $bd = $GLOBALS['bd'];
         $enckey = $GLOBALS['enckey'];
         
-        $other_reviewers_sql = "SELECT rev_id, title, fname, lname, email, status FROM assigned_forms,reviewer where form_id=$id and assigned_forms.rev_id = reviewer.id";
+        $other_reviewers_sql = "SELECT rev_id, title, fname, lname, email, status FROM assigned_forms, reviewer where form_id=$id and assigned_forms.rev_id = reviewer.id";
 
         $select_others = mysqli_query( $bd, $other_reviewers_sql);
         $other_reviewers = '';
         $email_to = '';
         while ($row_others = mysqli_fetch_array($select_others)) {
             $rev_id = $row_others['rev_id'];
-            $other_reviewers[$rev_id] = ($row_others['title'].'. '.$row_others['fname'].' '.$row_others['lname']);
+            $other_reviewers[$rev_id] = ($row_others['title'].($row_others['title']?'. ':'').$row_others['fname'].' '.$row_others['lname']);
             $email_to[$rev_id] = $row_others['email'];
         }
         $this->reviewers = $other_reviewers;
@@ -370,7 +372,13 @@ class Application {
             $this->lead_rev_id = $row_lead['rev_id'];
             $this->lead_reviewer = new User($this->lead_rev_id, 'Reviewer');            
             break;
-        }        
+        }
+        $patient_sql = "SELECT * FROM form_creation WHERE 3rdlineart_form_id = $id";
+        $select_patient = mysqli_query( $bd, $patient_sql);
+        while ($row_pat = mysqli_fetch_assoc($select_patient)) {
+            $this->patient = new Patient($row_pat['patient_id']);
+            break;
+        }
     }
 
     public function lead_reviewer($which='name') {
@@ -379,7 +387,11 @@ class Application {
         if ($which == 'email')
             return $this->lead_reviewer->email;            
         if ($which == 'phone')
-            return $this->lead_reviewer->phone;            
+            return $this->lead_reviewer->phone;
+        if ($which == 'id') {
+            echo "<br>which is $which";
+            return $this->lead_reviewer->id;
+        }
     }
     
     public function other_reviewers($rev_id)
@@ -475,6 +487,7 @@ class Patient {
     public $vl_sample_id;
     public $date_created;
     public $enc;
+    public $id;
     
     private $row_pat;
     public function __construct($id, $id_type='patient')
@@ -491,7 +504,8 @@ class Patient {
         $pat = mysqli_query($bd, $query); 
         $row_pat = mysqli_fetch_assoc($pat);
         $enc = $row_pat['enc'];
-                
+
+        $this->id = $id;
         $this->pat_art_clinic = $enc ? decrypt($row_pat['pat_art_clinic'], $enckey) : $row_pat['pat_art_clinic'];
         $this->art_id_num = $enc ? decrypt($row_pat['art_id_num'], $enckey) : $row_pat['art_id_num'];
         $this->art_id_num_ref = $enc ? decrypt($row_pat['art_id_num_ref'], $enckey) : $row_pat['art_id_num_ref'];
@@ -537,7 +551,7 @@ class Patient {
     }
 }
 
-$p = new Patient(6);
+// $p = new Patient(6);
 
 /*
 ./includes/app_consolidated2_view.php:12:$form_creation=mysqli_query( $bd,"SELECT * FROM patient, form_creation, expert_review_consolidate2 WHERE  form_creation.3rdlineart_form_id=expert_review_consolidate2.form_id and form_creation.clinician_id ='$clinicianID' and form_creation.patient_id=patient.id and expert_review_consolidate2.form_id ='$formID' ORDER BY `form_creation`.`3rdlineart_form_id` DESC"); 
@@ -563,7 +577,7 @@ $p = new Patient(6);
 */
 
 $cp_query = [
-    'select_assigned_forms' => "SELECT distinct form_id,date_assigned FROM assigned_forms 
+    'select_assigned_forms' => "SELECT distinct form_id FROM assigned_forms 
          WHERE form_id not in (select form_id from expert_review_consolidate1) 
          ORDER BY `assigned_forms`.`form_id` DESC",
     'select_new_forms' => "SELECT * FROM form_creation 

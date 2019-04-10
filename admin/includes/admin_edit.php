@@ -32,14 +32,14 @@ $passwd = dehasword ($passwd, $salt);
 </style>
 
 
-<form id="edit-profile" class="form-horizontal" action="dash.php" method="post">
+<form id="edit-profile" class="form-horizontal" action="dash.php?update_user" method="post">
 	<div class="control-group">											
 		<label class="control-label" for="firstname">Username</label>
 		<div class="controls">
 			<input type="hidden" class="span3" id="id" name="id" value="<?php echo $id; ?>" style="margin:5px" >
 			<input type="hidden" class="span3" id="id" name="user_id" value="<?php echo $user_id; ?>" style="margin:5px" >
 			<input type="text" class="span4" id="username" name="username" value="<?php echo $username; ?>" style="margin:5px"><br />
-            <input type="hidden" id="update_user" name="update_user" value="1"/>
+            <input type="hidden" name="redir_page" value="<?=$redir_page?>">
 		</div>			
 	</div>
 	<div class="control-group">											
