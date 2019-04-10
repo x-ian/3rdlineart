@@ -58,6 +58,7 @@ if(isset($_GET['lead'])){
 					$assigned = mysqli_query( $bd,"SELECT rev_id, status FROM assigned_forms where form_id='$form_id'"); 
 					$assigned_count = mysqli_query( $bd,"SELECT rev_id, status FROM assigned_forms where form_id='$form_id' and status='Reviewed'");
 					$complete_review = mysqli_num_rows ($assigned_count);
+					$reviewer_count = mysqli_num_rows($assigned);
 
 					$select_team_lead = mysqli_query( $bd,"SELECT reviewer_team_lead.rev_id, reviewer.title, reviewer.fname, reviewer.lname FROM reviewer_team_lead, reviewer where reviewer_team_lead.form_id='$form_id' and reviewer_team_lead.rev_id=reviewer.id");
 					$row_team_lead = mysqli_fetch_array($select_team_lead);
@@ -91,6 +92,13 @@ if(isset($_GET['lead'])){
 						}
 					}
 
+					if ($reviewer_count == '1') {
+						echo "<td>Not assigned</td><td>Not assigned</td>";
+					}
+                                        if ($reviewer_count == '2') {
+                                                echo "<td>Not assigned</td>";
+                                        }
+
 					if ($complete_review >='3'){
 						echo "
 						<td class=\"td-actions\" style=\"font-size: 14px\">$team_leader_name<br><a href=\"cp_p1.php?rev&lead=".$team_leader_id.'&formid='.$form_id.'" class="btn btn-large btn-invert" style="color:#0F0"><i class="btn-icon-only icon-ok" style="font-weight:bold">Notify Lead Expert</i></a></td>';
@@ -99,6 +107,9 @@ if(isset($_GET['lead'])){
                     else {
                         echo ' <td class="td-actions"> <h4>'.$team_leader_name.'</h4></td>';
                         echo '<td><a href="cp_p1.php?assign&reassign&lead='.$team_leader_id.'&id='.$form_id.'" class="btn btn-small btn-primary" style="padding:10px; font-size:100%">Reassign Reviewer</a></td>';
+			//echo "
+                        //<td class=\"td-actions\" style=\"font-size: 14px\">$team_leader_name<br>";
+			//echo '<a href="cp_p1.php?assign&reassign&lead='.$team_leader_id.'&id='.$form_id.'" class="btn btn-small btn-primary" style="padding:10px; font-size:100%">Reassign Reviewer</a>';
                     }
                     echo
                         '</tr>';

@@ -11,13 +11,27 @@
          }
          return true;
      }
+
+     function stickyheaddsadaer(obj) {
+         if($(obj).is(":checked")){
+             // alert("Yes checked"); //when checked
+         } else {
+             // alert("Not checked"); //when not checked
+             if (obj.readOnly == true) {
+                 alert("Can't reassign - already reviewed by this reviewer");
+                 obj.checked = true;
+             }             
+         }
+     }
 </script>
      
 <?php
 global $formID;
 $formID= $_GET['id'];
 $reassign = isset($_GET['reassign']);
-$lead = isset($_GET['lead']);
+$lead = $_GET['lead'];
+
+
 $form_creation=mysqli_query( $bd,"SELECT * FROM form_creation WHERE 3rdlineart_form_id ='$formID'"); 
 
 while ($row_form_creation=mysqli_fetch_array($form_creation)){
@@ -34,6 +48,10 @@ while ($row_form_creation=mysqli_fetch_array($form_creation)){
     $patient_name = $patient->fullname;
 }
 
+if (!isset($lead)) {
+    $app = new Application($formID);
+    $lead = $app->lead_reviewer($which='id');
+}
 
 echo '<h2 style="background-color:#dedd6;  text-align:center; color:#000000">Assign Reviewers</h2>
 <i style="float:right">Please TICK only three (3) <u>Reviewers </u>and Pick one as <u>Lead reviewer</u></i>                 
@@ -72,7 +90,7 @@ echo '<h2 style="background-color:#dedd6;  text-align:center; color:#000000">Ass
 			$lname = $row_reviewer['lname'];
 			$email = $row_reviewer['email'];
 			$phone = $row_reviewer['phone'];
-			$rev_fullname = $title.'. '. $fname. ' '. $lname;
+			$rev_fullname = $title.( $title?'. ':''). $fname. ' '. $lname; // ." $id $lead ".(($id == intval($lead)) ? 'checked="checked"' : '');
 
             if ($reassign) {
                 $assigned_this_form = mysqli_query( $bd,"SELECT * FROM assigned_forms where rev_id='$id' and form_id='$formID'");                
@@ -84,7 +102,7 @@ echo '<h2 style="background-color:#dedd6;  text-align:center; color:#000000">Ass
                 $already_reviewed = mysqli_num_rows($reviewed_this_form);
                 $reviewed = $already_reviewed ? '<span class="btn btn-success">Yes</span>' : '<span class="btn btn-danger">No</span>';
                 // already reviewed, disable
-                $assigned_checked .= ($already_reviewed ? ' disabled' : '');
+                $assigned_checked .= ($already_reviewed ? ' readonly' : '');
             } 
             $assigned_forms = mysqli_query( $bd,"SELECT * FROM assigned_forms where rev_id='$id'");
 			$count = mysqli_num_rows ($assigned_forms);
@@ -94,7 +112,7 @@ echo '<h2 style="background-color:#dedd6;  text-align:center; color:#000000">Ass
 
 			echo '<tr><td>
 			<label class="checkbox">
-				<input type="checkbox" name="checkbox[]" id="checkbox[]" value="'.$id.'" style="transform:scale(2, 2); margin: 3px;" '.$assigned_checked.'><span style="font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$rev_fullname.'</span></td>
+				<input type="checkbox" name="checkbox[]" id="checkbox[]" value="'.$id.'" onchange="stickyheaddsadaer(this);" style="transform:scale(2, 2); margin: 3px;" '.$assigned_checked.'><span style="font-weight:bold;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$rev_fullname.'</span></td>
             <td><span style="color:#0b13d0">Assigned<i> ('.$count.')</i></span></td>
             <td><span style="color:#0b13d0">Pending<i> ('.$pending.')</i></span></td>
 			</label></td>';
