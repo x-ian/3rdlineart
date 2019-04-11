@@ -67,8 +67,8 @@ function phpmailer_send($to, $subject, $body, $from='3rdlineartmalawi@gmail.com'
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     
     // PUT THE CREDENTIALS HERE - ultimately they will come from the database !!!
-    $mail->Username = '3rdlineartmalawi';                 // SMTP username
-    $mail->Password = 'g3n0typ3';                         // SMTP password
+    $mail->Username = '3rdlineartmalawi_mw';                 // SMTP username
+    $mail->Password = 'g3n0typ3_mw';                         // SMTP password
 
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
@@ -105,7 +105,7 @@ function phpmailer_send($to, $subject, $body, $from='3rdlineartmalawi@gmail.com'
 }
 
 // $from3rdlineemail = "From:3rdlineart@lighthouse.org.mw\r\n";
-function email_msg($email_template, $to='3rdlineartmalawi@gmail.com') {
+function email_msg($email_template, $to='3rdlineartmalawi_mw@gmail.com') {
     global $facility, $rev_title, $rev_lname, $fullname, $username, $enckey, $decision, $attachements;
     global $password, $role;
     global $comment_to_clinician;
@@ -113,7 +113,7 @@ function email_msg($email_template, $to='3rdlineartmalawi@gmail.com') {
     global $rooturl;
     global $formID;
     
-    $from3rdlineemail = "From:3rdlineartmalawi@gmail.com\r\n";
+    $from3rdlineemail = "From:3rdlineartmalawi_mw@gmail.com\r\n";
     $ccemail = ""; // "Cc:j.dumisani7291@gmail.com\r\n";
     $bccemail = ""; // "Bcc:dumi_ndhlovu@lighthouse.org.mw\r\n";
 
