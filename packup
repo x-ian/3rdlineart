@@ -1,6 +1,0 @@
-#!/bin/sh
-rm update3rdline.tar.gz
-mv includes/vendor ..
-find . \( -not -ipath '*back*' -and -not -ipath '*.git*' -and -not -ipath ./includes/config.php  -and -not -ipath ./includes/head.php -and -name "*.php" -and -mtime -12 \) | xargs tar czvf update3rdline.tar.gz
-mv ../vendor includes
-scp update3rdline.tar.gz jgelbard@168.253.229.30:
