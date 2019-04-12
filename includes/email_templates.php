@@ -14,6 +14,11 @@ if (file_exists('../includes/crypt_function.php'))
 else
     require 'includes/crypt_function.php';
 
+if (file_exists('../includes/config.php'))
+    require_once '../includes/config.php';
+else
+    require 'includes/config.php';
+
 function phpmailer2($to, $subject, $body) {
     global $bd;
     $curMonth = date("m");
@@ -24,7 +29,7 @@ function phpmailer2($to, $subject, $body) {
 	$insert_email = "INSERT INTO email_log
 	(msg_from, msg_to, subject, body, date_sent)
 	VALUES (
-	'3rdlineartmalawi@gmail.com', '$to', '$subject', ?, '$date_sent')"; // get_file_contents
+	'3rdlinemw@gmail.com', '$to', '$subject', ?, '$date_sent')"; // get_file_contents
 
     $stmt = mysqli_prepare($bd, $insert_email);
     mysqli_stmt_bind_param($stmt, 'b', mysqli_stmt_send_long_data($stmt, 0, $body));
@@ -47,14 +52,16 @@ function phpmailer($to, $subject, $body) {
 	$insert_email = "INSERT INTO email_log
 	(msg_from, msg_to, subject, body, date_sent, form_id)
 	VALUES (
-	'3rdlineartmalawi@gmail.com', '$to', '$subject', '".base64_encode($body)."', '$date_sent', $formID)"; // get_file_contents
+	'3rdlinemw@gmail.com', '$to', '$subject', '".base64_encode($body)."', '$date_sent', $formID)"; // get_file_contents
 
     // echo "<br>$insert_email";
-    mysqli_query($bd, $insert_email);
+    mysqli_query($bd, $insert_email) or die(mysqli_error($bd));
     return true;
 }
 
-function phpmailer_send($to, $subject, $body, $from='3rdlineartmalawi@gmail.com', $attachments=[]) {    
+function phpmailer_send($to, $subject, $body, $from='3rdlinemw@gmail.com', $attachments=[]) { 
+	global $mail_host, $mail_port, $mail_sender, $mail_sender_name, $mail_password;
+		
     $mail = new PHPMailer;
 
     // $mail->SMTPDebug = 3;                               // Enable verbose debug output
@@ -63,25 +70,25 @@ function phpmailer_send($to, $subject, $body, $from='3rdlineartmalawi@gmail.com'
     $mail->isSMTP();                                      // Set mailer to use SMTP
     // $mail->Host = 'ssl://email-smtp.us-west-2.amazonaws.com';
 
-    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->Host = $mail_host;  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     
     // PUT THE CREDENTIALS HERE - ultimately they will come from the database !!!
-    $mail->Username = '3rdlineartmalawi_mw';                 // SMTP username
-    $mail->Password = 'g3n0typ3_mw';                         // SMTP password
+    $mail->Username = $mail_sender;                 // SMTP username
+    $mail->Password = $mail_password;                         // SMTP password
 
     $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
+    $mail->Port = $mail_port;                                    // TCP port to connect to
 
     // $mail->Port = 443;                                    // TCP port to connect to
     
-    $mail->setFrom($from, '3rdlineart Mailer');
+    $mail->setFrom($from, $mail_sender_name);
     $mail->addAddress($to);     // Add a recipient, Name (2nd arg) is optional
     // $mail->addReplyTo('info@example.com', 'Information');
 
     // CC and BCC
     // $mail->addCC('cc@example.com');
-    // $mail->addBCC('bcc@example.com');
+    $mail->addBCC('christian.neumann@gmail.com');
 
     // $mail->addAttachment('/var/tmp/file.tar.gz');      // Add attachments
     // $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); // Optional name
@@ -105,15 +112,16 @@ function phpmailer_send($to, $subject, $body, $from='3rdlineartmalawi@gmail.com'
 }
 
 // $from3rdlineemail = "From:3rdlineart@lighthouse.org.mw\r\n";
-function email_msg($email_template, $to='3rdlineartmalawi_mw@gmail.com') {
+function email_msg($email_template, $to='3rdlinemw@gmail.com') {
     global $facility, $rev_title, $rev_lname, $fullname, $username, $enckey, $decision, $attachements;
     global $password, $role;
     global $comment_to_clinician;
     global $secretary_name, $email_secretary;
     global $rooturl;
     global $formID;
-    
-    $from3rdlineemail = "From:3rdlineartmalawi_mw@gmail.com\r\n";
+    global $mail_host, $mail_port, $mail_sender, $mail_sender_name, $mail_password;
+		
+    $from3rdlineemail = "From:" . $mail_sender . "\r\n";
     $ccemail = ""; // "Cc:j.dumisani7291@gmail.com\r\n";
     $bccemail = ""; // "Bcc:dumi_ndhlovu@lighthouse.org.mw\r\n";
 

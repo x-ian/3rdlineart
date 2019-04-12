@@ -1,16 +1,20 @@
 <?php
-// $mysql_hostname = "localhost";
+// config file for real server environment
+// use this file as a template / example and copy to config.php
+// never ever store the config.php with realworld passwords in VCS!!!
+
 $mysql_hostname = "127.0.0.1";
-//$mysql_user = "3rdlineart_root";
 $mysql_user = "root";
-// $mysql_password = "g3n0typ3";
-$mysql_password = "password";
-//$mysql_password = "password";
-// $mysql_database = "3rdlineart9_db";
-$mysql_database = "3rdlineart9";
-// echo "mysqli_connect($mysql_hostname, $mysql_user, $mysql_password, $mysql_database)";
+$mysql_password = "nobody_should_ever_know";
+$mysql_database = "3rdlineart9_db";
 $bd = mysqli_connect($mysql_hostname, $mysql_user, $mysql_password, $mysql_database)
 or die("Oops some thing went very wrong");
+
+$mail_host="smtp.gmail.com";
+$mail_port=587;
+$mail_sender="3rdlinemw@gmail.com";
+$mail_sender_name="3rd Line ART Mailer";
+$mail_password="nobody_should_ever_know";
 
 // echo mysqli_connect_errno();
 

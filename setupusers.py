@@ -180,7 +180,7 @@ def phpmailer(to, subject, body):
     insert_email = """INSERT INTO email_log
     (msg_from, msg_to, subject, body, date_sent)
     VALUES (
-    '3rdlineartmalawi@gmail.com', '%s', '%s', '%s', '%s')""" % (to, subject, base64.b64encode(body), date_sent)
+    '3rdlinemw@gmail.com', '%s', '%s', '%s', '%s')""" % (to, subject, base64.b64encode(body), date_sent)
     db_exec(insert_email)
 
 serveraddr = 'localhost'
