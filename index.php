@@ -6,8 +6,8 @@
 	<title>Login - 3rd Line ART Expert Committee Malawi</title>
 	<?php
 	include ('includes/head.php');
-	$redirect = $_GET['redirect'];
-	$redirect = isset($_GET['redirect'])
+	$redirect = isset($_GET['redirect']);
+	$reset = isset($_GET['reset']);	
 	?>
 
 </head>
