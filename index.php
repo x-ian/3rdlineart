@@ -7,7 +7,7 @@
 	<?php
 	include ('includes/head.php');
 	$redirect = $_GET['redirect'];
-	$reset = isset($_GET['reset']);
+	$redirect = isset($_GET['redirect'])
 	?>
 
 </head>
