@@ -1,15 +1,8 @@
 <?php
 // echo $_SERVER['SERVER_ADDR'].':'.$_SERVER['SERVER_HOST'];
-// $serveraddr = $_SERVER['SERVER_ADDR'];
-// $serveraddr='localhost'; // genotype-PowerEdge-T130';
-// $serveraddr = '168.253.229.30';
-// $serveraddr = 'localhost';
-// $serveraddr = 'www.3rdlineartmw.org';
-$serveraddr = 'localhost';
-// $rooturl = "https://$serveraddr/3rdlineart/";
-$rooturl = "http://$serveraddr/3rdlineart/";
-$path = $_SERVER['DOCUMENT_ROOT']."/3rdlineart";
-$cpath = $path."/includes/config.php";
+$cpath = "config.php";
+
+global $serveraddr, $rooturl, $path;
 
 echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">';
 echo '<meta name="apple-mobile-web-app-capable" content="yes">';
