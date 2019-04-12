@@ -11,7 +11,7 @@ echo '<script src="'.$rooturl.'js/base.js"></script>';
   <div class="footer-inner">
     <div class="container">
       <div class="row">
-        <div class="span12"> &copy; 2017 <a href="#">3rd Line ART Expert Committee Malawi</a>. </div>
+        <div class="span12"> &copy; 2019 <a href="#">3rd Line ART Expert Committee Malawi</a>. </div>
       </div>
     </div>
   </div>
