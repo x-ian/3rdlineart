@@ -45,11 +45,11 @@
 					<td> <p style="text-align:center"><a href="cp_p1.php?view&id='.$_3rdlineart_form_id.'&clin_id='. $clinician_id.'&pat_id='.$patient_id.'"><strong> 3rdLForm#'.$_3rdlineart_form_id.'</strong></a></p> </td>
 					<td> <p style="text-align:center"><strong>'.$date_created.'</strong></p> </td>
 					';
+				echo '<td class="td-actions">';
                 if ($form_complete =='Yes') {
-                    echo '<td class="td-actions"><a href="cp_p1.php?assign&id='.$_3rdlineart_form_id.'" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> Assign Reviewers </i></a></td>';
-				} else {
-					echo '<td class="td-actions"><a href="#" class="btn btn-small btn-success" disabled="disabled"><i class="btn-icon-only icon-ok" id="help">Assign Reviewers </i></a></td>';
-				}
+                    echo '<a href="cp_p1.php?assign&id='.$_3rdlineart_form_id.'" class="btn btn-small btn-success"><i class="btn-icon-only icon-ok"> Assign Reviewers </i></a>';
+				} 
+				echo '<a href="cp_p1.php?del_application&page=man_rev&id='.$_3rdlineart_form_id.'&patient_id='.$patient_id.'" style="color:#f00" onclick ="return confirm (\'Are you sure you want to delete the whole application? Note: This can not be undone!\')"> Remove </i></a></td>';				
 				echo '</tr>';
 			}
 			?>

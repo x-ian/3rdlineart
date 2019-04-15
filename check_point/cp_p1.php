@@ -134,6 +134,10 @@ else
 										include ('includes/sec_new.php');
 									}
 
+									if(isset($_GET['del_application'])){
+										include ('includes/delete_application.php');
+									}
+
 									if(isset($_GET['view'])) {
                                         // if (isset($_GET['subnav']))
                                             // include ('includes/sub_nav.php');
