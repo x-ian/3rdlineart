@@ -48,7 +48,7 @@ if (isset($_SESSION['identification'])) {
             echo '							
 	<div class="alert alert-success">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Hey!!</strong>Your session has expired. Please Login again to continue!!.
+		<strong>Hey!!</strong> Your session has expired. Please Login again to continue!!.
 	</div>';
         echo "<meta http-equiv=\"Refresh\" content=\"2; url=" . "logout.php?redirect=$redirect" . "\">";
     }
@@ -57,7 +57,7 @@ if (isset($_SESSION['identification'])) {
         echo '							
 	<div class="alert alert-success">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Hey!!</strong>Your session has expired. Please Login again to continue!!.
+		<strong>Hey!!</strong> Your session has expired. Please Login again to continue!!.
 	</div>';
         echo "<meta http-equiv=\"Refresh\" content=\"2; url=" . "logout.php?redirect=$redirect" . "\">";
 }
