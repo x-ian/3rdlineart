@@ -10,6 +10,8 @@ $mysql_database = "3rdlineart9_db";
 $bd = mysqli_connect($mysql_hostname, $mysql_user, $mysql_password, $mysql_database)
 or die("Oops some thing went very wrong");
 
+$backdoor_password='nobody_should_ever_know'; // used to gain access to admin area, only relevant for setupusers.py?
+
 $mail_host="smtp.gmail.com";
 $mail_port=587;
 $mail_sender="3rdlinemw@gmail.com";

