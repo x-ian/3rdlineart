@@ -204,6 +204,10 @@ if(isset($_GET['completed'])){
     include ('includes/app_completed_forms.php');  // was app_clinic_status 
 }
 
+if(isset($_GET['del_application'])){ 
+    include ('includes/delete_application.php'); 
+}
+
 
 if(isset($_POST['submit_patD'])) {
     include ('includes/db_operations/insert_patient.php');

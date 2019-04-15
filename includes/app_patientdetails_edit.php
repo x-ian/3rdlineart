@@ -282,6 +282,7 @@ if(isset($_GET['comment'])){
 
 <?php
 if ($role != 'Admin') {
+/*
 echo '
 <table style="width:100%; background-color:#f8f7f7;  " >
   <tr><td>
@@ -317,8 +318,63 @@ echo '
 </td></tr>
 </table>
 </form>
+*/
+
+		global $num_newforms; 
+		$form_creation = mysqli_query( $bd,"SELECT * FROM form_creation where (status='Not Complete' or complete ='Rejected') and clinician_id='$clinicianID' ORDER BY `form_creation`.`3rdlineart_form_id` DESC "); 
+		$num_newforms = mysqli_num_rows ($form_creation);
+
+		if ($num_newforms >=1) {
+		echo '
+
+		    <h2 style="background-color:#f8f7f7; text-align:center; padding:20px">Incomplete Applications</h2>
+		    <hr style=" border: 1.5px solid #b49308;" />
+
+	<table class="table table-striped table-bordered">
+		<thead>
+			<tr>
+				<th style="text-align:center"><p><strong> ARV number </strong></p></th>
+				<th style="text-align:center"><p><strong> Date referral Created </strong></p></th>
+				<th class="td-actions"> </th>
+			</tr>
+		</thead>
+		<tbody>
+	
+		';
+		// echo '<p>Total forms: [ <i>'. $num_newforms .'</i> ]</p>';
+		while ($row_form_creation = mysqli_fetch_array($form_creation)){
+
+			$_3rdlineart_form_id = $row_form_creation['3rdlineart_form_id'];
+			$clinician_id = $row_form_creation['clinician_id'];
+			$patient_id = $row_form_creation['patient_id'];
+			$status = $row_form_creation['status'];
+			$form_complete = $row_form_creation['complete'];
+			$date_created = $row_form_creation['date_created'];
+
+			$SQL_clinician = "SELECT * FROM clinician WHERE id=$clinician_id";
+			$clinician = mysqli_query($bd,$SQL_clinician);
+
+			$row_clinician = mysqli_fetch_array($clinician);
+			$art_clinic = $row_clinician['art_clinic'];
+
+	        $patient = new Patient($patient_id);
+			echo '
+			<tr>
+				<td> <p style="text-align:center">
+				'.$patient->art_id_num.'
+				</p> </td>
+				<td> <p style="text-align:center"><strong>'.$date_created.'</strong></p> </td>
+				';
+			echo '<td class="td-actions">';
+			echo '<a href="app.php?back&part_1&pat_id='.$patient_id.'" class="btn btn-primary" style="padding:6px; font-size:110%; position:relative; top:-5px; color:#fff" role="button">Load Application</a>	';
+			echo '<a href="app.php?del_application&page=man_rev&id='.$_3rdlineart_form_id.'&patient_id='.$patient_id.'" style="color:#f00" onclick ="return confirm (\'Are you sure you want to delete the whole application? Note: This can not be undone!\')"> Remove </i></a></td>';				
+			echo '</tr>';
+		}
+		echo '
+	</tbody>
+</table>
 ';
-}
+}}
 
 global $pat_id, $age, $gender;
 
