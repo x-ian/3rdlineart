@@ -7,7 +7,7 @@ $sql_form_creation_not_complete = "UPDATE form_creation ".
 
 $form_submited_not_complete = mysqli_query( $bd , $sql_form_creation_not_complete);
 echo "<br>$sql_form_creation_not_complete";
-exit();
+//exit();
 
 $clinician_email= $_POST['email_address']; 
 $comment_to_clinician = $_POST['comment']; 
