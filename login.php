@@ -191,9 +191,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else
             $delay = 0;
         
-        if ($redirect) 
-            $url = $redirect;            
-        echo sprintf("<meta http-equiv=\"Refresh\" content=\"%s; url=$url\">", $delay);
+        if ($redirect && $redirect <> 1)
+            $url = $redirect;
+		
+		echo sprintf("<meta http-equiv=\"Refresh\" content=\"%s; url=$url\">", $delay);
     }
 }
 
