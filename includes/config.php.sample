@@ -10,14 +10,6 @@ $mysql_database = "3rdlineart9_db";
 $bd = mysqli_connect($mysql_hostname, $mysql_user, $mysql_password, $mysql_database)
 or die("Oops some thing went very wrong");
 
-// $serveraddr = $_SERVER['SERVER_ADDR'];
-// $serveraddr = '168.253.229.30';
-$serveraddr = 'localhost';
-// $serveraddr = 'www.3rdlineartmw.org';
-$rooturl = "http://$serveraddr/3rdlineart/";
-// $rooturl = "https://$serveraddr/3rdlineart/";
-$path = $_SERVER['DOCUMENT_ROOT']."/3rdlineart";
-
 $mail_host="smtp.gmail.com";
 $mail_port=587;
 $mail_sender="3rdlinemw@gmail.com";
