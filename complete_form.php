@@ -130,9 +130,14 @@ $email_secretary = $row_secretary['email'];
 								}
 
 								if(isset($_POST['complete_submit'])) {
-                                    $sql_get_formid = "SELECT form_id from form_rejected where form_id in (SElECT form_id from form_creation WHERE patient_id='$pat_id')";
-                                    $form_exists = mysqli_num_rows(mysqli_query($bd, $sql_get_formid ));
-
+                                    $sql_get_formid = "SELECT form_id from form_rejected where form_id in (SElECT 3rdlineart_form_id from form_creation WHERE patient_id='$pat_id')";
+									error_log($sql_get_formid);
+									if ($result = mysqli_query($bd, $sql_get_formid)) {
+										$form_exists = mysqli_num_rows($result);
+									} else {
+										error_log(mysqli_error($bd));
+									}
+                                    
                                     $form_submited = mysqli_query($bd, $sql_get_formid ); 
 									$sql_form_creation = "UPDATE form_creation ".
 									"SET status='Complete'".
@@ -141,6 +146,8 @@ $email_secretary = $row_secretary['email'];
                                     // echo $sql_form_creation;
 									$form_submited = mysqli_query($bd, $sql_form_creation );    
                                     
+									mysqli_query($bd, "DELETE FROM form_rejected where form_id in (SElECT 3rdlineart_form_id from form_creation WHERE patient_id='$pat_id')");
+									
 									echo '							
 									<div class="alert alert-success">
 										<button type="button" class="close" data-dismiss="alert">&times;</button>

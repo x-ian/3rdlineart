@@ -150,7 +150,7 @@ To: '.$other_reviewers.',<br>In regards to the Application #'.$form_id.', Patien
     &nbsp;
 	</div>
 	<div class="span3">
-    <button type="submit" id="submit_review" class="btn btn-success" style="padding:10px; float:right; font-size:180%" name="submit_review">Next</button> -->
+    <button type="submit" id="submit_review" class="btn btn-success" style="padding:10px; float:right; font-size:180%" name="submit_review">Next</button>
 	</div>
 </div>
 
