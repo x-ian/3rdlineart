@@ -132,7 +132,7 @@ else {
                   maxDate: today,
                         minDate: epoch,
                         dateFormat: 'dd/mm/yy',
-                        yearRange: '1900:2018',                    
+                        yearRange: '1900:2020',                    
                         changeMonth: true,
                         changeYear: true
                         });
@@ -143,7 +143,7 @@ else {
                   maxDate: today,
                         minDate: epoch,
                         dateFormat: 'dd/mm/yy',
-                        yearRange: '1900:2018',                                        
+                        yearRange: '1900:2020',                                        
                         changeMonth: true,
                         changeYear: true
                         });
@@ -154,7 +154,7 @@ else {
                   maxDate: today,
                         minDate: epoch,
                         dateFormat: 'dd/mm/yy',
-                        yearRange: '1900:2018',                                                            
+                        yearRange: '1900:2020',                                                            
                         changeMonth: true,
                         changeYear: true
                         });
@@ -165,7 +165,7 @@ else {
                     // maxDate: today,
                         minDate: epoch,
                         dateFormat: 'dd/mm/yy',
-                        yearRange: '1900:2018',                                                                
+                        yearRange: '1900:2020',                                                                
                         changeMonth: true,
                         changeYear: true
 				});

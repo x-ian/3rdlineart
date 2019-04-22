@@ -90,7 +90,7 @@ for($i=0; $i<10; $i++) {
 				                maxDate: today,
                                 minDate: epoch,
                                 dateFormat: 'dd/mm/yy',
-                                yearRange: '1900:2018',
+                                yearRange: '1900:2020',
 								// beforeShow : function()
 								// {
                                 //         jQuery( this ).datepicker('option','maxDate', jQuery('#datepicker2').val() == 'undefined'?today:jQuery('#datepicker$datepicker2').val() );
@@ -105,7 +105,7 @@ for($i=0; $i<10; $i++) {
 				                maxDate: today,
                                 // minDate: epoch,
                                 dateFormat: 'dd/mm/yy',
-                                yearRange: '1900:2018',
+                                yearRange: '1900:2020',
 								beforeShow : function()
 								{
                                         jQuery( this ).datepicker('option','minDate', jQuery('#datepicker').val() == 'undefined'?epoch:jQuery('#datepicker$datepicker').val() );
