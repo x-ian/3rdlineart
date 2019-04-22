@@ -610,10 +610,10 @@ $admin_query = [
     'select_drugs' => 'SELECT * FROM drugs',
     'select_facilitys' => 'SELECT * FROM facility',
     'select_affiliates' => 'SELECT * FROM partner_org',
-    'select_rev' => 'SELECT * FROM reviewer where linked <> 1',
-    'select_clinician' => 'SELECT * FROM clinician where linked <> 1',
+    'select_rev' => 'SELECT * FROM reviewer',
+    'select_clinician' => 'SELECT * FROM clinician',
     'select_labs' => 'SELECT * FROM pih_lab',
-    'select_sec' => 'SELECT * FROM secretary where linked <> 1',
+    'select_sec' => 'SELECT * FROM secretary',
     'select_admin' => 'SELECT * FROM admin',
     'select_apps' => 'SELECT * FROM patient',    
 ];

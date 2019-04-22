@@ -18,7 +18,7 @@
 		<tbody>
 			<?php
 
-			$clinician=mysqli_query($bd, "SELECT * FROM clinician where linked <> 1 ORDER BY lname"); 
+			$clinician=mysqli_query($bd, "SELECT * FROM clinician ORDER BY lname"); 
 			while ($row_clinician=mysqli_fetch_array($clinician)){
 
 				$art_clinic =$row_clinician['art_clinic'];

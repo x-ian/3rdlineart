@@ -17,7 +17,7 @@
 		<tbody>
 			<?php
 
-			$secretary=mysqli_query($bd, "SELECT * FROM secretary where linked <> 1"); 
+			$secretary=mysqli_query($bd, "SELECT * FROM secretary"); 
 			while ($row_secretary=mysqli_fetch_array($secretary)){
 
 				$fname =$row_secretary['fname'];

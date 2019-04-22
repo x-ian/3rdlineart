@@ -16,7 +16,7 @@
 	<tbody>
 		<?php
 
-		$reviewer=mysqli_query( $bd,"SELECT * FROM reviewer where linked <> 1"); 
+		$reviewer=mysqli_query( $bd,"SELECT * FROM reviewer"); 
 		while ($row_reviewer=mysqli_fetch_array($reviewer)){
 			
 			$title = $row_reviewer['title'];

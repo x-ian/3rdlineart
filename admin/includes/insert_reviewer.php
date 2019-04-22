@@ -71,9 +71,9 @@ else {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
     
 	$insert_reviewer = " INSERT INTO reviewer
-	(user_id,title,fname,lname,email,phone,affiliate_institution,snapshot,isClinician,isSecretary,linked)
+	(user_id,title,fname,lname,email,phone,affiliate_institution,snapshot,isClinician,isSecretary)
 	VALUES (
-	'$user_id', '$title', '$fname', '$lname', '$email', '$phone', '$affiliate_institution','$snapshot', '$isClinician', '$isSecretary', 0)";
+	'$user_id', '$title', '$fname', '$lname', '$email', '$phone', '$affiliate_institution','$snapshot', '$isClinician', '$isSecretary')";
 
     try {
         mysqli_query($bd, $insert_reviewer);
@@ -88,9 +88,9 @@ else {
         $isReviewer = 1;
         
         $insert_clinician = " INSERT INTO clinician
-	(user_id,art_clinic,name,fname,lname,email,phone,isReviewer,linked)
+	(user_id,art_clinic,name,fname,lname,email,phone,isReviewer)
 	VALUES (
-	'$user_id', '$clin_art_clinic', '$fullname', '$fname', '$lname', '$email', '$phone', '$isReviewer', 1)";
+	'$user_id', '$clin_art_clinic', '$fullname', '$fname', '$lname', '$email', '$phone', '$isReviewer')";
         echo "<br>$insert_clinician";
         try {
             mysqli_query($bd, $insert_clinician);
@@ -105,9 +105,9 @@ else {
         $isReviewer = 1;
         
         $insert_secretary = " INSERT INTO secretary
-	(user_id,fname,lname,email,phone,linked)
+	(user_id,fname,lname,email,phone)
 	VALUES (
-	'$user_id', '$fname', '$lname', '$email', '$phone', 1)";
+	'$user_id', '$fname', '$lname', '$email', '$phone')";
         echo "<br>$insert_secretary";
         try {
             mysqli_query($bd, $insert_secretary);

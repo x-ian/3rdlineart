@@ -62,9 +62,9 @@ if(isset($_POST['register_clinician'])){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 $insert_clinician = " INSERT INTO clinician
-	(user_id,art_clinic,name,fname,lname,email,phone,isReviewer,linked)
+	(user_id,art_clinic,name,fname,lname,email,phone,isReviewer)
 	VALUES (
-	'$user_id', '$clin_art_clinic', '$fullname', '$firstname', '$lastname', '$email', '$phone', '$isReviewer',0)";
+	'$user_id', '$clin_art_clinic', '$fullname', '$firstname', '$lastname', '$email', '$phone', '$isReviewer')";
                 // echo "<br>$insert_clinician";
                 try {
                     mysqli_query($bd, $insert_clinician);
@@ -74,9 +74,9 @@ if(isset($_POST['register_clinician'])){
                 }
                 if ($isReviewer) {
                     	$insert_reviewer = " INSERT INTO reviewer
-	(user_id,title,fname,lname,email,phone,affiliate_institution,snapshot,isClinician,isSecretary,linked)
+	(user_id,title,fname,lname,email,phone,affiliate_institution,snapshot,isClinician,isSecretary)
 	VALUES (
-	'$user_id', '$title', '$firstname', '$lastname', '$email', '$phone', '$clin_art_clinic','', '1', '0', '1')";
+	'$user_id', '$title', '$firstname', '$lastname', '$email', '$phone', '$clin_art_clinic','', '1', '0')";
 
                         try {
                             mysqli_query($bd, $insert_reviewer);
