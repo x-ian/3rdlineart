@@ -18,7 +18,7 @@ if (isset($_SESSION['identification'])){
     $expire = $_SESSION['expire'];
 }
 
-$SQL_secretary = "SELECT * FROM secretary limit 1";
+$SQL_secretary = "SELECT * FROM secretary where isActive=1 limit 1";
 $secretary = mysqli_query($bd, $SQL_secretary);
 $row_secretary = mysqli_fetch_array($secretary);
 $email_secretary = $row_secretary['email'];

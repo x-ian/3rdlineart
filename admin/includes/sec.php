@@ -11,6 +11,7 @@
 				<th> <p style="text-align:center"><strong>Secretary Name </strong></p></th>
 				<th> <p style="text-align:center"><strong>Email</strong></p></th>
 				<th> <p style="text-align:center"><strong>Phone</strong></p></th>
+				<th> <p style="text-align:center"><strong>Active</strong></p></th>
 
 			</tr>
 		</thead>
@@ -24,6 +25,7 @@
 				$lname =$row_secretary['lname'];
 				$phone =$row_secretary['phone'];
 				$email =$row_secretary['email'];
+				$active =$row_secretary['isActive'] == 1 ? 'yes': 'no';
 				$id =$row_secretary['id'];
 				$user_id =$row_secretary['user_id'];
 				$users=mysqli_query($bd, "SELECT * FROM users where id='$user_id'"); 
@@ -37,7 +39,9 @@
 					<td> <p style="text-align:center"><strong>'.$secfullname.' </strong></p></td>
 					<td> <p style="text-align:center"><strong>'.$email.'</strong></p> </td>
 					<td> <p style="text-align:center"><strong>'.$phone.'</strong></p></td>
+					<td> <p style="text-align:center"><strong>'.$active.'</strong></p></td>
 					<td class="td-actions"><a href="dash.php?sec_edit&id='.$id.'"> Edit </i></a></td>
+					<td class="td-actions"><a href="dash.php?sec_activate&id='.$id.'"> Make active </i></a></td>
 					<td class="td-actions"><a href="dash.php?del_user&page=sec&id='.$user_id.'" style="color:#f00"> Remove </i></a></td>
 				</tr> 
 

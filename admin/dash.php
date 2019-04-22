@@ -213,6 +213,13 @@ if(isset($_GET['sec_edit'])) {
     include ('includes/sec_edit.php');   
 }
 
+if(isset($_GET['sec_activate'])) { 
+	$id = $_GET['id'];
+	$secretary=mysqli_query($bd, "UPDATE secretary set isActive = 0"); 
+	$secretary=mysqli_query($bd, "UPDATE secretary set isActive = 1 where id='$id'"); 
+    echo '<meta http-equiv="Refresh" content="0; url=dash.php?man_sec">';    
+}
+
 if(isset($_GET['create_lab_user'])) { 
     include ('includes/create_lab.php');   
 }
