@@ -56,7 +56,7 @@ function mail_unsentmsgs() {
         // echo '<img src="data:image/jpeg;base64,' . base64_encode($body) . '" width="200" height="200">';
         if ($body == '')
             continue;
-        echo "Sending To: $to, Subject: $subject, From: $from ...\n";
+        echo "\nSending To: $to, Subject: $subject, From: $from ...\n";
 
         $success = phpmailer_send("christian.neumann@gmail.com", $subject . $to, $body, $from);
         if ($success)
