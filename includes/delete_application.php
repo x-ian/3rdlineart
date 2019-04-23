@@ -1,7 +1,6 @@
 <?php
 
 if(isset($_GET['del_application'])) { 
-	error_log('XXXXXXXX');
 	$patient_id = $_GET['patient_id'];
 	$form_id = $_GET['id'];
 	$reload = $_GET['page'];
@@ -16,10 +15,10 @@ if(isset($_GET['del_application'])) {
 			</div>
 			';
 	    } else {
-	    	error_log(mysqli_error($bd));
+	    	// error_log(mysqli_error($bd));
 		}
     } else {
-		error_log(mysqli_error($bd));
+		// error_log(mysqli_error($bd));
 	}
 
 echo "<meta http-equiv=\"Refresh\" content=\"2; url=app.php?part_1\">"; 
