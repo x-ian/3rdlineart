@@ -577,7 +577,7 @@ class Patient {
 */
 
 $cp_query = [
-    'select_assigned_forms' => "SELECT distinct form_id FROM assigned_forms 
+    'select_assigned_forms' => "SELECT distinct form_id, date_assigned FROM assigned_forms 
          WHERE form_id not in (select form_id from expert_review_consolidate1) 
          ORDER BY `assigned_forms`.`form_id` DESC",
     'select_new_forms' => "SELECT * FROM form_creation 
