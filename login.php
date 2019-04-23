@@ -217,7 +217,7 @@ if ($num_rows == 0 || $attempts >= 5) {
         $attempts = 0;
         $insert_login_attempts = "INSERT INTO login_attempts (username, attempts, date)
         VALUES ('$dusername', '$attempts', '$date' )";
-        echo "<br>$insert_login_attempts";
+        // echo "<br>$insert_login_attempts";
         // exit();
         mysqli_query( $bd,$insert_login_attempts);	
     }
