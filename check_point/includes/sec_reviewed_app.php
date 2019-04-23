@@ -38,7 +38,7 @@ if(isset($_GET['show_app_form'])){
                 echo '
 				<tr>
 					<td> <strong> 3rdLForm#'.$form_id.'</strong> </td>
-                    <td style="width:30%">'.$app->other_reviewers(0).'</td>
+                    <td style="width:30%">'.$row_expert_review_consolidate1['reviewer_names'].'</td>
 					<td> <p style="text-align:center"><strong>'.$date_reviewed.'</strong></p> </td>
 <td class="td-actions"><div style="text-align:center"> <a href="cp_p1.php?view&subnav=reviewed_app&id='.$form_id.'&clin_id='. $clinician_id.'&pat_id='.$patient_id.'" class="btn btn-small btn-warning"><i class="btn-icon-only icon-ok">View</i></a></div></td>
 				</tr> 
