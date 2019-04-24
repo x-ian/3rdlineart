@@ -26,6 +26,8 @@
 				<th style="text-align:center"> <p><strong>FORM Id</strong></p></th>
 				<th style="text-align:center"> <p><strong>Date Assigned</strong></p></th> 
 				<th style="text-align:center"> <p><strong>Facility</strong></p></th> 
+				<th style="text-align:center"> <p><strong>G4S notification</strong></p></th> 
+				<th style="text-align:center"> <p><strong>Phone number</strong></p></th> 
 			</tr>
 		</thead>           
 		<tbody>
@@ -38,6 +40,8 @@
 				$clinician_id = $row_sample['clinician_id'];
 				$status = $row_sample['status'];
 				$date_created = $row_sample['date_created'];
+				$g4s = $row_sample['g4s_notification'];
+				$phone_number = $row_sample['phone'];
 
 				$clinician = mysqli_query( $bd,"SELECT * FROM clinician where id='$clinician_id'"); 
 				$row_clinician= mysqli_fetch_array($clinician);
@@ -48,6 +52,8 @@
 					<td border="4"> <p style="text-align:center"><strong><a href="#">Form # '. $form_id .'</a></strong></p>  </td>
 					<td> <p style="text-align:center"><strong>'.$date_created.'</strong></p> </td>
 					<td> <p style="text-align:center"><strong>'. $art_clinic .'</strong></p>  </td>
+					<td> <p style="text-align:center"><strong>'. $g4s .'</strong></p>  </td>
+					<td> <p style="text-align:center"><strong>'. $phone_number .'</strong></p>  </td>
 					';
 
 					if($status =='Received') { 

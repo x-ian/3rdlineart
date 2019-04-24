@@ -37,7 +37,9 @@ $num_forms = mysqli_num_rows ($form_creation);
 			<td>'; 
         if ($genotyping == 'Yes' and !isset($_GET['sample_already_requested'])){
 					echo '
-					<a href="app.php?p&sendsample&formid='. $_3rdlineart_form_id.'" style="float:right" class="btn btn-large btn-primary"><i class="btn-icon-only icon-ok"> Dispatch Sample </i></a>';
+					<input type="tel" class="span2" id="g4s" name="g4s" style="margin:5px" placeholder="Tracking: G4S notification">
+					<input type="tel" class="span2" id="phone" name="phone" style="margin:5px" placeholder="Tracking: Phone">
+					<a href="" onclick="this.href=\'app.php?p&sendsample&formid=' . $_3rdlineart_form_id . '&g4s=\'+document.getElementById(\'g4s\').value + \'&phone=\' +document.getElementById(\'phone\').value" style="float:right" class="btn btn-large btn-primary"><i class="btn-icon-only icon-ok"> Dispatch Sample </i></a>';
 				}
 
 				echo '

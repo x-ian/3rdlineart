@@ -3,11 +3,13 @@
 if(isset($_GET['sendsample'])){ 
 	
     $form_id= mysqli_real_escape_string($bd, $_GET['formid']);
+    $g4s= mysqli_real_escape_string($bd, $_GET['g4s']);
+    $phone= mysqli_real_escape_string($bd, $_GET['phone']);
     $date_created= date('d/m/Y');
  	
-$insert_sample=" INSERT  INTO  sample (form_id,clinician_id,date_created)
+$insert_sample=" INSERT  INTO  sample (form_id,clinician_id,date_created,phone,g4s_notification)
 VALUES (
-'$form_id', '$clinicianID', '$date_created')";
+'$form_id', '$clinicianID', '$date_created', '$phone', '$g4s')";
 
 mysqli_query( $bd,$insert_sample);	
 
