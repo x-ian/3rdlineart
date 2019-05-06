@@ -119,14 +119,14 @@ $dob
           maxDate: today,            
                 minDate: monthsago6, // new Date(1900, 1, 1),
                 dateFormat: "dd/mm/yy",
-                yearRange: "1900:2018"
+                yearRange: "1900:20202018"
                 });
 
         $("#datepicker_s").datepicker("option", {
           maxDate: today,
                 minDate: epoch, 
                 dateFormat: "dd/mm/yy",
-                yearRange: "1900:2018"
+                yearRange: "1900:20202018"
                 });
         
         function clearText() {
@@ -139,7 +139,7 @@ $dob
           maxDate: today,            
                 minDate: epoch,
                 dateFormat: "dd/mm/yy",
-                yearRange: "1900:2018",
+                yearRange: "1900:20202018",
                 beforeShow : function()
                 {
                     jQuery( this ).datepicker('option','minDate', jQuery('#datepicker_s').val() == 'undefined'?today:jQuery('#datepicker_s').val() );

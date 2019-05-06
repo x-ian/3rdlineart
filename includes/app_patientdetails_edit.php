@@ -36,7 +36,7 @@ $().ready(function() {
     var currentYear = date.getFullYear();
 
     $("#datepicker2").datepicker("option", {
-            yearRange: "1900:2018",                    
+            yearRange: "1900:20202018",                    
             maxDate: new Date(),
             minDate: new Date(1900, 1, 1),
             dateFormat: "dd/mm/yy",

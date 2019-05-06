@@ -72,7 +72,7 @@ echo '
         $( function() {
 			$( "#datepickersVis_Date1" ).datepicker('option', {
 				changeMonth: true,
-                    yearRange: "1900:2018",                    
+                    yearRange: "1900:20202018",                    
                     maxDate: today,
                     minDate: epoch,
                     dateFormat: 'dd/mm/yy',
@@ -84,7 +84,7 @@ echo '
        $( function() {
 			$( "#datepickeraVis_Date12" ).datepicker('option', {
 				changeMonth: true,
-                    yearRange: "1900:2018",
+                    yearRange: "1900:20202018",
                     maxDate: today,                    
                     minDate: epoch,
                     dateFormat: 'dd/mm/yy',                    
@@ -95,7 +95,7 @@ echo '
 		$( function() {
 			$( "#datepickersVis_Date2" ).datepicker('option', {
 				changeMonth: true,
-                    yearRange: "1900:2018",                    
+                    yearRange: "1900:20202018",                    
                     maxDate: today,
                     // minDate: epoch,
                     dateFormat: 'dd/mm/yy',
@@ -110,7 +110,7 @@ echo '
 		$( function() {
 			$( "#datepickeraVis_Date22" ).datepicker('option', {
 				changeMonth: true,
-                    yearRange: "1900:2018",                    
+                    yearRange: "1900:20202018",                    
                     maxDate: today,
                     // minDate: epoch,
                     dateFormat: 'dd/mm/yy',
@@ -125,7 +125,7 @@ echo '
 		$( function() {
 			$( "#datepickersVis_Date3" ).datepicker('option', {
 				changeMonth: true,
-                    yearRange: "1900:2018",                    
+                    yearRange: "1900:20202018",                    
                     maxDate: today,
                     // minDate: epoch,
                     dateFormat: 'dd/mm/yy',                    
@@ -140,7 +140,7 @@ echo '
 		$( function() {
 			$( "#datepickeraVis_Date32" ).datepicker('option', {
 				changeMonth: true,
-                    yearRange: "1900:2018",                    
+                    yearRange: "1900:20202018",                    
                     maxDate: today,
                     // minDate: epoch,
                     dateFormat: 'dd/mm/yy',                    
