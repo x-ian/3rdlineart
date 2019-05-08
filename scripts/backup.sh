@@ -28,10 +28,11 @@ mv $TMP_DIR/* $BACKUP_DIR
 
 # send mail notification
 # dont create new mail subsystem, but piggyback on 3rd line P, MySQL mailing
-MSG_TO="christian.neumann@gmail.com"
+#MSG_TO="christian.neumann@gmail.com"
+MSG_TO="benjamin@pihmalawi.com"
 MSG_FROM="3rdlinemw@gmail.com"
-SUBJECT="3RD Line Expert Application backup"
-BODY=$(echo "Backup done" | base64)
+SUBJECT="3RD Line Expert Application backup "
+BODY=$(echo "Local backup of 3rd line ART regimen to `echo $BACKUP_DIR` done" | base64)
 SENT=0
 DATE_SENT="$(date +%y-%m-%d)"
 FORM_ID=0
