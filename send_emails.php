@@ -58,7 +58,7 @@ function mail_unsentmsgs() {
             continue;
         echo "\nSending To: $to, Subject: $subject, From: $from ...\n";
 
-        $success = phpmailer_send("christian.neumann@gmail.com", $subject . $to, $body, $from);
+        $success = phpmailer_send($to, $subject, $body, $from);
         if ($success)
             mark_email_sent($id);
     }
