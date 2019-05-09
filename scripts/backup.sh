@@ -14,14 +14,21 @@ mkdir $TMP_DIR
 
 # backup database
 mysqldump -u $MYSQL_USER -p$MYSQL_PASSWD $MYSQL_DATABASE | gzip > $TMP_DIR/3rdlineart-`echo $FILE_POSTFIX`-db.sql.gz
+gpg --passphrase $MYSQL_PASSWD -c --no-use-agent $TMP_DIR/3rdlineart-`echo $FILE_POSTFIX`-db.sql.gz
 
 # backup current source code (despite it coming from github) 
 cd $SOURCE_DIR
 tar -czf $TMP_DIR/3rdlineart-`echo $FILE_POSTFIX`-source.tgz .
+gpg --passphrase $MYSQL_PASSWD -c --no-use-agent $TMP_DIR/3rdlineart-`echo $FILE_POSTFIX`-source.tgz
 
 # lab result attachments
 cd $SOURCE_DIR/documents/results
 tar czf $TMP_DIR/3rdlineart-`echo $FILE_POSTFIX`-lab-results.tgz .
+gpg --passphrase $MYSQL_PASSWD -c --no-use-agent $TMP_DIR/3rdlineart-`echo $FILE_POSTFIX`-lab-results.tgz
+
+# copy to external hard disk (assuming it is connected)
+mkdir /media/BENJA-WINDOWS/3rdline-backup
+cp $TMP_DIR/*.gpg /media/BENJA-WINDOWS/3rdline-backup
 
 # move to backup dir
 mv $TMP_DIR/* $BACKUP_DIR
