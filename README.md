@@ -17,7 +17,22 @@ Sources for web application "3rd Line ART Expert Committee Malawi" to manage pot
 1 Add index.php to /var/www/html with <?php header('Location: https://www.3rdlineartmw.org/3rdlineart'); exit; ?>
 1 Ensure that email account as configured in includes/config.php is functional
 1 Create cronjob for automated, async email processing, e.g. with */10 * * * * cd /var/www/html/3rdlineart && /usr/bin/php send_emails.php > /dev/null
-1 Create cronjob or manually invoke backup scripts, e.g. with 55 23 * * Sun cd /var/www/html/3rdlineart/scripts && ./backup.sh
+1 Create cronjob or manually invoke backup scripts, e.g. with 0 13 * * Sun cd /var/www/html/3rdlineart/scripts && ./backup.sh
+
+## Backup
+
+Via cronjob a backup to the local hard disk is done every day (currently folder /home/thirdline/3rdlineart-backup). This backup includes these archives:
+* A MySQL dump of the database
+* The folder with all uploaded lab results documents
+* All currently uses PHP sources (should be the same as from github)
+
+Additionally if an external hard drive is connected (currently configured is the external disk BENJA-WINDOWS with the filesystem NTFS in the /etc/fstab file), the GPG encrypted files are copied to that hard drive into the folder 3rdline-backup. The password for the encryption is the same as the MySQL password.
+
+Once the backup is done, a mail is sent out.
+
+## Dell PowerEdge server hardware
+
+Currently the BIOS firmware version of the server seems to prevent a warm/soft reboot. During next bootup a memory initialization error blocks the startup. Maybe a firmware upgrade can prevent that as described here: https://www.dell.com/support/article/de/de/dedhs1/sln303868/system-hangs-during-warm-reboot-at-critical-memory-initialization-error-for-poweredge-t130-r230-r330-and-t330-servers?lang=en
 
 ## Development stuff
 
