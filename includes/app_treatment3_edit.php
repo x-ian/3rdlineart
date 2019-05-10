@@ -179,7 +179,7 @@ var epoch = new Date(1900, 1, 1);
 				                maxDate: today,
                                 minDate: epoch,
                                 dateFormat: 'dd/mm/yy',
-                                yearRange: '1900:20202020',
+                                yearRange: '1900:2020',
 								beforeShow : function()
 								{
                                         jQuery( this ).datepicker('option','minDate', jQuery('#datepicker$i').val() == 'undefined'?epoch:jQuery('#datepicker$i').val() );
@@ -194,7 +194,7 @@ var epoch = new Date(1900, 1, 1);
 				                maxDate: today,
                                 minDate: epoch,
                                 dateFormat: 'dd/mm/yy',
-                                yearRange: '1900:20202020',
+                                yearRange: '1900:2020',
 								changeYear: true
 							});
 						} );";
@@ -207,7 +207,7 @@ var epoch = new Date(1900, 1, 1);
 				                maxDate: today,
                                 minDate: epoch,
                                 dateFormat: 'dd/mm/yy',
-                                yearRange: '1900:20202020',
+                                yearRange: '1900:2020',
 								changeYear: true
 							});
 						} );";

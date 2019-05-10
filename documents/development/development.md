@@ -53,6 +53,11 @@ DELETE FROM partner_org;
 
 ## Upgrading
 
+### Some cleanup
+
+update reviewer set email = trim(email); 
+update clinician set email = trim(email); 
+
 ### Fixing existing and adding new art_drugs
 
 update drugs set date_created = '22/07/2018' where id =3;
