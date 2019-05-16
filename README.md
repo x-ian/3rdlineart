@@ -30,10 +30,6 @@ Additionally if an external hard drive is connected (currently configured is the
 
 Once the backup is done, a mail is sent out.
 
-## Dell PowerEdge server hardware
-
-Currently the BIOS firmware version of the server seems to prevent a warm/soft reboot. During next bootup a memory initialization error blocks the startup. Maybe a firmware upgrade can prevent that as described here: https://www.dell.com/support/article/de/de/dedhs1/sln303868/system-hangs-during-warm-reboot-at-critical-memory-initialization-error-for-poweredge-t130-r230-r330-and-t330-servers?lang=en
-
 ## Development stuff
 
 See picture / documents in folder documents/development
