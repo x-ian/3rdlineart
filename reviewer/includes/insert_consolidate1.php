@@ -8,6 +8,7 @@ if (isset($_POST['submit_consolidate1'])) {
     $reviewer_names = $_POST['reviewer_names'];
     $genotyping = $_POST['genotyping']; 
     $date_reviewed = date('d/m/Y');
+	$lab_emails = $_POST['lab_emails']; 
 
     // echo "<br>$comment_to_clinician";
     // echo "<br>clinician_email(insert)consolidate1) is $clinician_email";
@@ -20,5 +21,8 @@ VALUES (
 '$formID', '$genotyping', '$comment_to_clinician', '$reviewer_names', '$date_reviewed')";
     mysqli_query($bd, $insert_expert_review_consolidate1);	    
     email_msg('insert_consolidate1_comment', $clinician_email);
+	if ($genotyping == 'Yes') {
+		email_msg('insert_consolidate1_comment', $lab_emails);
+	}
 }
 ?>

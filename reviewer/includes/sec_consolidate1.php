@@ -102,8 +102,15 @@ while ($row_form_creation=mysqli_fetch_array($form_creation)){
 	$clinician_phone = $row_clinician['phone'];
 	$clinician_email = $row_clinician['email'];
 	$art_clinic = $row_clinician['art_clinic'];
+
+	// ignorantly grab all lab user mail addresses and also inform them
+	$SQL_lab = "SELECT group_concat(email) FROM pih_lab";
+	$lab_result = mysqli_query($bd,$SQL_lab);
+	$row_lab = mysqli_fetch_array($lab_result);
+	$lab_emails = $row_lab['group_concat(email)'];
+	// $lab_emails = "lab@lab.lab";
+	// echo "<br>clinician_email is $clinician_email";
 }
-// echo "<br>clinician_email is $clinician_email";
 ?>
 
 <!-- </tr></tbody></table>-->
@@ -152,6 +159,7 @@ while ($row_form_creation=mysqli_fetch_array($form_creation)){
 			<h4>Is Genotyping indicated?</h4>          
 		</td>
 		<td>
+			<input type="hidden" name="lab_emails" value="<?php echo $lab_emails; ?>" />
 			<input type="hidden" name="clinician_email" value="<?php echo $clinician_email; ?>" />
 			<input type="hidden" name="clinician_name" value="<?php echo $clinician_name; ?>" />
             <input type="hidden" name="reviewer_names" value="<?php echo $reviewer_names; ?>" />
